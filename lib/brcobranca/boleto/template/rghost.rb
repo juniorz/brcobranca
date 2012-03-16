@@ -158,7 +158,7 @@ module Brcobranca
           doc.moveto :x => '16.5 cm' , :y => '22.2 cm'
           doc.show boleto.valor_documento.to_currency
           doc.moveto :x => '1.4 cm' , :y => '20.9 cm'
-          doc.show "#{boleto.sacado} - #{boleto.sacado_documento.formata_documento}"
+          doc.show "#{boleto.identificacao_sacado}"
           doc.moveto :x => '1.4 cm' , :y => '20.6 cm'
           doc.show "#{boleto.sacado_endereco}"
           #FIM Primeira parte do BOLETO
@@ -186,7 +186,7 @@ module Brcobranca
           doc.moveto :x => '4.2 cm' , :y => '14.4 cm'
           doc.show boleto.numero_documento
           doc.moveto :x => '10 cm' , :y => '14.4 cm'
-          doc.show boleto.especie
+          doc.show boleto.especie_documento
           doc.moveto :x => '11.7 cm' , :y => '14.4 cm'
           doc.show boleto.aceite
           doc.moveto :x => '13 cm' , :y => '14.4 cm'
@@ -196,11 +196,11 @@ module Brcobranca
           doc.moveto :x => '4.4 cm' , :y => '13.5 cm'
           doc.show boleto.carteira
           doc.moveto :x => '6.4 cm' , :y => '13.5 cm'
-          doc.show boleto.moeda
+          doc.show boleto.especie
           doc.moveto :x => '8 cm' , :y => '13.5 cm'
           doc.show boleto.quantidade
           doc.moveto :x => '11 cm' , :y => '13.5 cm'
-          doc.show boleto.valor.to_currency
+          doc.show ""
           doc.moveto :x => '16.5 cm' , :y => '13.5 cm'
           doc.show boleto.valor_documento.to_currency
           doc.moveto :x => '0.7 cm' , :y => '12.7 cm'
@@ -215,8 +215,12 @@ module Brcobranca
           doc.show boleto.instrucao5
           doc.moveto :x => '0.7 cm' , :y => '10.7 cm'
           doc.show boleto.instrucao6
+          doc.moveto :x => '0.7 cm' , :y => '10 cm'
+          doc.show "#{boleto.cedente}  -  CPF/CNPJ: #{boleto.documento_cedente.formata_documento}"
+          doc.moveto :x => '0.7 cm' , :y => '9.6 cm'
+          doc.show "#{boleto.endereco_cedente}"
           doc.moveto :x => '1.2 cm' , :y => '8.8 cm'
-          doc.show "#{boleto.sacado} - #{boleto.sacado_documento.formata_documento}" if boleto.sacado && boleto.sacado_documento
+          doc.show "#{boleto.identificacao_sacado}"
           doc.moveto :x => '1.2 cm' , :y => '8.4 cm'
           doc.show "#{boleto.sacado_endereco}"
           #FIM Segunda parte do BOLETO
