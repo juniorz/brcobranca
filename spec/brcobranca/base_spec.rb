@@ -65,6 +65,13 @@ module Brcobranca #:nodoc:[all]
         boleto_novo.valid?.should be_true
       end
 
+      it "Calcula valor com floats corretamente" do
+        boleto_novo = Brcobranca::Boleto::Base.new(@valid_attributes)
+        boleto_novo.valor = 123.45678901234567890
+        valor_formatado = boleto_novo.send :valor_documento_formatado
+        valor_formatado.length.should eql(10)
+      end
+
       it "Calcula agencia_dv" do
         boleto_novo = Brcobranca::Boleto::Base.new(@valid_attributes)
         boleto_novo.agencia = "85068014982"
